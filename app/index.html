@@ -53,17 +53,24 @@
     
             <div class="jumbotron">
                 <h1>Live MBTA train information</h1>
+                <img src="img/t.jpg" alt="T logo" class="center-block">
                 <p>This is a test using angularjs to get some train data displayed in a table that auto-updates. Don't base your life on this data because this is under development.</p>
 
                 <div ng-app="mbta">
                     <div ng-controller="mbtaData">
 
-                        <p> Select from stuff:
-                        <input ng-model="query[queryBy]"> 
-                            <select ng-model="queryBy" ng-options="o.name as o.name for o in options">
-                            </select>
+                        <hr> 
+                        
+                        <p> 
+                            <div class="col-xs-2">
+                                <input ng-model="query[queryBy]" placeholder="Query..."> 
+                            </div>
+                            <div class="col-xs-2">     
+                                <select ng-model="queryBy" ng-options="o.name as o.name for o in options" class="form-control">
+                                </select>
+                            </div>
                         </p>
-
+                        <br />
                         <!-- p class="DEBUG">
                             <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>
                         </p --> 
