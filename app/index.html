@@ -57,8 +57,10 @@
 
                 <div ng-app="mbta">
                     <div ng-controller="mbtaData">
+                        <p>Search: <input ng-model="searchText"> </p>
+                        <hr>
                         <p> <a ng-click="loadTrains()">Reload data</a></p>
-                        <table>
+                        <table id="mbtaSearchResults" class="table">
                             <tr>
                                 <th>Line</th>
                                 <th>Trip Number</th>
@@ -68,7 +70,7 @@
                                 <th>Time until next station</th>
                                 <th>Route</th><!-- TODO: make this display ashmont/braintree -->
                             </tr>
-                            <tr ng-repeat="train in trains">
+                            <tr ng-repeat="train in trains | filter:searchText">
                                 <td>{{train.Line}}</td>
                                 <td>{{train.Trip}}</td>
                                 <td>{{train.PlatformKey}}</td>
@@ -87,11 +89,6 @@
                         </table>
                     </div>
                 </div>
-
-                <p>
-
-
-                </p>
             </div>
 
         </div> <!-- /container -->
