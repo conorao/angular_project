@@ -17,9 +17,22 @@ function mbtaData($scope, $http) {
         //everything in the view must be attached to the scope.    
     });
 
-    // Options for the search filter
+    // Basic querying
 
-        //$scope.options = [
+        $scope.query = {}
+        $scope.queryBy = '$' //init
+
+    // Options for the search filter (TODO)
+
+        $scope.searchOptions = [  { name: "Line", id: 0 }, 
+                            { name: "Trip Number", id: 1 },
+                            { name: "Last Station", id: 2 },
+                            { name: "Status", id: 3 },
+                            { name: "Time Arrived", id: 4 },
+                            { name: "Time Until Next Station", id: 5 },
+                            { name: "Route", id: 6 }];
+
+        $scope.selectedOption = $scope.searchOptions[0];
 
     };
 

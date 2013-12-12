@@ -57,7 +57,23 @@
 
                 <div ng-app="mbta">
                     <div ng-controller="mbtaData">
-                        <p>Search: <input ng-model="searchText"> </p>
+
+                        <p>
+                            <input ng-model="query[queryBy]"> 
+                        </p>
+                        <p>
+                            <select ng-model="queryBy"> <!-- ng-options="o.name for o in options" -->
+                                <option value="$" selected="true">All</option>
+                                <option value="Line">Line</option>
+                                <option value="Trip">Trip Number</option>
+                                <option value="PlatformKey">Last Station</option>
+                                <option value="InformationType">Status</option>
+                                <option value="Time">Time Arrived</option>
+                                <option value="TimeRemaining">Time Until Next Station</option>
+                                <option value="Route">Route</option>
+                            </select>
+                        </p>
+
                         <hr>
                         <p> <a ng-click="loadTrains()">Reload data</a></p>
                         <table id="mbtaSearchResults" class="table">
@@ -70,7 +86,7 @@
                                 <th>Time until next station</th>
                                 <th>Route</th><!-- TODO: make this display ashmont/braintree -->
                             </tr>
-                            <tr ng-repeat="train in trains | filter:searchText">
+                            <tr ng-repeat="train in trains | filter:query">
                                 <td>{{train.Line}}</td>
                                 <td>{{train.Trip}}</td>
                                 <td>{{train.PlatformKey}}</td>
@@ -78,13 +94,6 @@
                                 <td>{{train.Time}}</td>
                                 <td>{{train.TimeRemaining}}</td>
                                 <td>{{train.Route}}</td>
-                                <!-- td>{{train."Line"}}</td>
-                                <td>{{train."Trip"}}</td>
-                                <td>{{train."PlatformKey"}}</td>
-                                <td>{{train."InformationType"}}</td>
-                                <td>{{train."Time"}}</td>
-                                <td>{{train."TimeRemaining"}}</td>
-                                <td>{{train."Route"}}</td -->
                             </tr>
                         </table>
                     </div>
