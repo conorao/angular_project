@@ -63,20 +63,24 @@
                             <select ng-model="queryBy" ng-options="o.name as o.name for o in options">
                             </select>
                         </p>
-                        
+
+                        <!-- p class="DEBUG">
+                            <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>
+                        </p --> 
+
                         <hr> 
                         <p> <a ng-click="loadTrains()">Reload data</a></p>
                         <table id="mbtaSearchResults" class="table">
                             <tr>
-                                <th>Line</th>
-                                <th>Trip Number</th>
-                                <th>Last Station</th>
-                                <th>Status</th>
-                                <th>Time Arrived</th>
-                                <th>Time until next station</th>
-                                <th>Route</th><!-- TODO: make this display ashmont/braintree -->
+                                <th><a href="" ng-click="predicate = 'Line'; reverse=!reverse">Line</a></th>
+                                <th><a href="" ng-click="predicate = 'Trip'; reverse=!reverse">Trip Number</a></th>
+                                <th><a href="" ng-click="predicate = 'PlatformKey'; reverse=!reverse">Last Station</a></th>
+                                <th><a href="" ng-click="predicate = 'InformationType'; reverse=!reverse">Status</a></th>
+                                <th><a href="" ng-click="predicate = 'Time'; reverse=!reverse">Time Arrived</a></th>
+                                <th><a href="" ng-click="predicate = 'TimeRemaining'; reverse=!reverse">Time until next station</a></th>
+                                <th><a href="" ng-click="predicate = 'Route'; reverse=!reverse">Route</a></th><!-- TODO: make this display ashmont/braintree -->
                             </tr>
-                            <tr ng-repeat="train in trains | filter:query">
+                            <tr ng-repeat="train in trains | filter:query | orderBy: predicate:reverse">
                                 <td>{{train.Line}}</td>
                                 <td>{{train.Trip}}</td>
                                 <td>{{train.PlatformKey}}</td>
