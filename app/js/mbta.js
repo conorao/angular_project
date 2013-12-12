@@ -7,37 +7,36 @@ function mbtaData($scope, $http) {
     $scope.loadTrains = function() {
     var mainInfo = null;
     
-    $http.get('http://conorodell.com/angular_project/app/Red.json').success(function(data) {
-    //$http.get('http://developer.mbta.com/Data/Red.json').success(function(data) {
-    // this is only here until the MBTA complains again but I think it is a good resource
-        mainInfo = data;
-        console.log(mainInfo);
-    
-        $scope.trains = mainInfo;
-        //everything in the view must be attached to the scope.    
+    $http.get('http://conorodell.com/angular_project/app/json/orange.json').success(function(data) {
+        $scope.trains = $scope.trains.concat(data);
     });
 
+    $http.get('http://conorodell.com/angular_project/app/json/blue.json').success(function(data) {
+        $scope.trains = $scope.trains.concat(data);
+    });
+        
+    $http.get('http://conorodell.com/angular_project/app/json/red.json').success(function(data) {
+        $scope.trains = $scope.trains.concat(data);
+    });
+    
     // Basic querying
 
         $scope.query = {}
         $scope.queryBy = '$' //init
 
-    // Options for the search filter (TODO)
+    // Options for the search filter
 
-        $scope.searchOptions = [  { name: "Line", id: 0 }, 
-                            { name: "Trip Number", id: 1 },
-                            { name: "Last Station", id: 2 },
-                            { name: "Status", id: 3 },
-                            { name: "Time Arrived", id: 4 },
-                            { name: "Time Until Next Station", id: 5 },
+        $scope.options = [  { name: "Line", id: 0 }, 
+                            { name: "Trip", id: 1 },
+                            { name: "PlatformKey", id: 2 },
+                            { name: "InformationType", id: 3 },
+                            { name: "Time", id: 4 },
+                            { name: "TimeRemaining", id: 5 },
                             { name: "Route", id: 6 }];
 
-        $scope.selectedOption = $scope.searchOptions[0];
+        $scope.selectedOption = $scope.options[0];
 
     };
 
 $scope.loadTrains();
-
-//console.log(mainInfo);
-
 }

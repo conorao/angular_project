@@ -58,23 +58,13 @@
                 <div ng-app="mbta">
                     <div ng-controller="mbtaData">
 
-                        <p>
-                            <input ng-model="query[queryBy]"> 
-                        </p>
-                        <p>
-                            <select ng-model="queryBy"> <!-- ng-options="o.name for o in options" -->
-                                <option value="$" selected="true">All</option>
-                                <option value="Line">Line</option>
-                                <option value="Trip">Trip Number</option>
-                                <option value="PlatformKey">Last Station</option>
-                                <option value="InformationType">Status</option>
-                                <option value="Time">Time Arrived</option>
-                                <option value="TimeRemaining">Time Until Next Station</option>
-                                <option value="Route">Route</option>
+                        <p> Select from stuff:
+                        <input ng-model="query[queryBy]"> 
+                            <select ng-model="queryBy" ng-options="o.name as o.name for o in options">
                             </select>
                         </p>
-
-                        <hr>
+                        
+                        <hr> 
                         <p> <a ng-click="loadTrains()">Reload data</a></p>
                         <table id="mbtaSearchResults" class="table">
                             <tr>
