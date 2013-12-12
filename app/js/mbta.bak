@@ -1,0 +1,21 @@
+var app = angular.module('mbta', []);
+
+function mbtaData($scope, $http) {
+
+    $scope.trains = [];
+
+    $scope.loadTrains = function() {
+        var httpRequest = $http({
+            method: 'GET',
+            url: '/echo/json/',
+            data: 'http://developer.mbta.com/Data/Red.json'
+
+        }).success(function(data, status) {
+            $scope.trains = data;
+        });
+
+    };
+
+$scope.loadTrains();
+
+}
